@@ -1,0 +1,19 @@
+<resources>
+    <string name="accion_mostrar">Show Places</string>
+    <string name="accion_preferencias">Preferences</string>
+    <string name="accion_acerca_de">About</string>
+    <string name="accion_salir">Exit</string>
+    <string name="form_nombre">Name:</string>
+    <string name="form_nombre_hint">Something that identifies this place</string>
+    <string name="form_tipo">Type:</string>
+    <string name="form_direccion">Address:</string>
+    <string name="form_direccion_hint">Where is this place</string>
+    <string name="form_telefono">Phone:</string>
+    <string name="form_telefono_hint">Phone</string>
+    <string name="form_url">URL:</string>
+    <string name="form_url_hint">Web page</string>
+    <string name="form_comentario">Comment:</string>
+    <string name="form_comentario_hint">Introduce here your notes</string>
+    <string name="app_name">My Places</string>
+    <string name="action_settings">Settings</string>
+</resources>
