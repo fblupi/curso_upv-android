@@ -13,6 +13,7 @@ public class MainActivity extends ActionBarActivity {
 
     private Button bAcercaDe;
     private Button bSalir;
+    private Button bPreferencias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,13 @@ public class MainActivity extends ActionBarActivity {
                 salir(null);
             }
         });
+
+        bPreferencias = (Button) findViewById(R.id.Button02);
+        bPreferencias.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                lanzarPreferencias(null);
+            }
+        });
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -41,6 +49,7 @@ public class MainActivity extends ActionBarActivity {
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings){
+            lanzarPreferencias(null);
             return true;
         }
         if (id == R.id.acercaDe) {
@@ -52,6 +61,11 @@ public class MainActivity extends ActionBarActivity {
 
     private void lanzarAcercaDe(View view){
         Intent i = new Intent(this, AcercaDe.class);
+        startActivity(i);
+    }
+
+    private void lanzarPreferencias(View view) {
+        Intent i = new Intent(this, Preferencias.class);
         startActivity(i);
     }
 

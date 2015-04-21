@@ -1,0 +1,18 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="notificaciones"
+        android:title="@string/preferencias_notificaciones_title"
+        android:summary="@string/preferencias_notificaciones_summary" />
+    <EditTextPreference
+        android:key="distancia"
+        android:title="@string/preferencias_distancia_title"
+        android:summary="@string/preferencias_distancia_summary"
+        android:defaultValue="3"/>
+    <ListPreference
+        android:key="criterio"
+        android:title="@string/preferencias_criterio_title"
+        android:summary="@string/preferencias_criterio_summary"
+        android:entries="@array/tiposOrden"
+        android:entryValues="@array/tiposOrdenValores"/>
+</PreferenceScreen>
