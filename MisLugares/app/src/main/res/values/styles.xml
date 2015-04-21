@@ -6,7 +6,7 @@
     </style>
     
     <style name="EstiloTexto">
-        <item name="android:textColor">#ff1c2249</item>
+        <item name="android:textColor">#000</item>
     </style>
 
     <style name="EstiloTexto.Botones">
