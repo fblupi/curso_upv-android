@@ -27,4 +27,11 @@
     <string name="preferencias_criterio_alfabetico">Alphabetical</string>
     <string name="preferencias_criterio_fecha">Date</string>
     <string name="preferencias_criterio_tipo">Type</string>
+    <string name="preferencias_categoria_correos">Email notifications</string>
+    <string name="preferencias_correos_title">Receive emails</string>
+    <string name="preferencias_correos_summary">Receive email with information about a place</string>
+    <string name="preferencias_direccion_correo_title">Email address</string>
+    <string name="preferencias_direccion_correo_summary">Address where notifications are sent</string>
+    <string name="preferencias_tipo_correos_title">Notifications type</string>
+    <string name="preferencias_tipo_correos_summary">Type of notifications you want to receive</string>
 </resources>

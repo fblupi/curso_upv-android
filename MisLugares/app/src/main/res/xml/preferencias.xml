@@ -15,4 +15,15 @@
         android:summary="@string/preferencias_criterio_summary"
         android:entries="@array/tiposOrden"
         android:entryValues="@array/tiposOrdenValores"/>
+    <PreferenceCategory
+        android:title="@string/preferencias_categoria_correos">
+        <CheckBoxPreference
+            android:key="correos"
+            android:title="@string/preferencias_correos_title"
+            android:summary="@string/preferencias_correos_summary"/>
+        <EditTextPreference
+            android:key="direccionCorreo"
+            android:title="@string/preferencias_direccion_correo_title"
+            android:summary="@string/preferencias_direccion_correo_summary"/>
+    </PreferenceCategory>
 </PreferenceScreen>
