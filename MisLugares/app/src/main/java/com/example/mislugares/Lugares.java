@@ -3,9 +3,6 @@ package com.example.mislugares;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by FranciscoJavier on 23/04/2015.
- */
 public class Lugares {
     protected static List<Lugar> vectorLugares = ejemploLugares();
 
@@ -14,6 +11,7 @@ public class Lugares {
     }
 
     static Lugar elemento(int id) {
+        System.out.println(id);
         return vectorLugares.get(id);
     }
 

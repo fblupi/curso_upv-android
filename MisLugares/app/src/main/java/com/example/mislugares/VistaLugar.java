@@ -1,12 +1,13 @@
 package com.example.mislugares;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class VistaLugar extends Activity {
+public class VistaLugar extends ActionBarActivity {
     private long id;
     private Lugar lugar;
 
@@ -23,7 +24,7 @@ public class VistaLugar extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_lugar);
         Bundle extras = getIntent().getExtras();
-        id = extras.getLong("id", -1);
+        id = extras.getLong("id");
         lugar = Lugares.elemento((int) id);
         TextView nombre = (TextView) findViewById(R.id.nombre);
         nombre.setText(lugar.getNombre());
@@ -93,7 +94,7 @@ public class VistaLugar extends Activity {
     }
 
     private void confirmarBorrado(final int id) {
-        new AlertDialog.Builder(this)
+               new AlertDialog.Builder(this)
                 .setTitle("Borrado de lugar")
                 .setMessage("¿Estás seguro que quieres eliminar este lugar?")
                 .setNegativeButton("Cancelar",null)
@@ -103,6 +104,7 @@ public class VistaLugar extends Activity {
                         Lugares.borrar(id);
                         finish();
                     }
-                });
+                })
+                .show();
     }
 }
