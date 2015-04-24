@@ -23,7 +23,7 @@
                 android:id="@+id/logo_tipo"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:contentDescription="logo del tipo"
+                android:contentDescription="@string/logo_tipo"
                 android:src="@drawable/otros" />
             <TextView
                 android:id="@+id/tipo"
@@ -42,7 +42,7 @@
                 android:id="@+id/logo_direccion"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:contentDescription="logo de la dirección"
+                android:contentDescription="@string/logo_direccion"
                 android:src="@android:drawable/ic_menu_myplaces" />
             <TextView
                 android:id="@+id/direccion"
@@ -61,7 +61,7 @@
                 android:id="@+id/logo_telefono"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:contentDescription="logo del telefono"
+                android:contentDescription="@string/logo_telefono"
                 android:src="@android:drawable/ic_menu_call" />
             <TextView
                 android:id="@+id/telefono"
@@ -80,7 +80,7 @@
                 android:id="@+id/logo_url"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:contentDescription="logo de la url"
+                android:contentDescription="@string/logo_url"
                 android:src="@android:drawable/ic_menu_mapmode" />
             <TextView
                 android:id="@+id/url"
@@ -99,7 +99,7 @@
                 android:id="@+id/logo_comentario"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:contentDescription="logo del comentario"
+                android:contentDescription="@string/logo_comentario"
                 android:src="@android:drawable/ic_menu_info_details" />
             <TextView
                 android:id="@+id/comentario"
@@ -110,7 +110,6 @@
                 android:text="comentario del lugar" />
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,7 +118,7 @@
                 android:id="@+id/logo_fecha"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:contentDescription="logo de la fecha"
+                android:contentDescription="@string/logo_fecha"
                 android:src="@android:drawable/ic_menu_my_calendar" />
             <TextView
                 android:id="@+id/fecha"
@@ -132,7 +131,7 @@
                 android:id="@+id/logo_hora"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:contentDescription="logo de la hora"
+                android:contentDescription="@string/logo_hora"
                 android:src="@android:drawable/ic_menu_recent_history" />
             <TextView
                 android:id="@+id/hora"
@@ -142,7 +141,6 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="fecha" />
         </LinearLayout>
-
 
         <RatingBar
             android:id="@+id/valoracion"
@@ -159,7 +157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:contentDescription="fotografía"
+                android:contentDescription="@string/foto_lugar"
                 android:src="@drawable/foto_epsg" />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -168,12 +166,12 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:contentDescription="logo camara"
+                    android:contentDescription="@string/logo_camara"
                     android:src="@android:drawable/ic_menu_camera" />
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:contentDescription="logo galeria"
+                    android:contentDescription="@string/logo_galeria"
                     android:src="@android:drawable/ic_menu_gallery" />
             </LinearLayout>
         </FrameLayout>

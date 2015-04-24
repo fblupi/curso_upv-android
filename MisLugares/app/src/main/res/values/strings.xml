@@ -6,6 +6,14 @@
     <string name="accion_salir">Salir</string>
     <string name="accion_buscar">Buscar</string>
     <string name="action_settings">Opciones</string>
+    <string name="ok">OK</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="compartir">Compartir</string>
+    <string name="como_llegar">Cómo llegar</string>
+    <string name="editar">Editar</string>
+    <string name="borrar">Borrar</string>
     <string name="acerca_de">Este programa ha sido desarrollado como ejemplo en el curso de Android para demostrar cómo se pueden lanzar nuevas actividades desde la actividad principal.</string>
     <string name="form_nombre">Nombre:</string>
     <string name="form_nombre_hint">Algo que identifique al lugar</string>
@@ -34,4 +42,18 @@
     <string name="preferencias_direccion_correo_summary">Cuenta donde se mandarán las notificaciones</string>
     <string name="preferencias_tipo_correos_title">Tipos de notificaciones</string>
     <string name="preferencias_tipo_correos_summary">Qué tipos de correos quieres recibir</string>
+    <string name="logo_tipo">Logo del tipo</string>
+    <string name="logo_direccion">Logo de la dirección</string>
+    <string name="logo_telefono">Logo del teléfono</string>
+    <string name="logo_url">Logo de la URL</string>
+    <string name="logo_comentario">Logo del comentario</string>
+    <string name="logo_fecha">Logo de la fecha</string>
+    <string name="logo_hora">Logo de la hora</string>
+    <string name="foto_lugar">Foto del lugar</string>
+    <string name="logo_galeria">Logo de la galería</string>
+    <string name="logo_camara">Logo de la cámara</string>
+    <string name="seleccion_lugar">Selección del lugar</string>
+    <string name="seleccion_lugar_mensaje">Introduzca su ID:</string>
+    <string name="borrado_lugar">Borrado del lugar</string>
+    <string name="borrado_lugar_mensaje">¿Estás seguro que quieres eliminar este lugar?</string>
 </resources>

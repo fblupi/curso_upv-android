@@ -80,18 +80,18 @@ public class MainActivity extends ActionBarActivity {
         final EditText entrada = new EditText(this);
         entrada.setText("0");
         new AlertDialog.Builder(this)
-                .setTitle("Selección de lugar")
-                .setMessage("Indica su id:")
+                .setTitle(R.string.seleccion_lugar)
+                .setMessage(R.string.seleccion_lugar_mensaje)
                 .setView(entrada)
-                .setPositiveButton("OK",new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.ok,new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent i = new Intent(MainActivity.this, VistaLugar.class);
-                        i.putExtra("id",entrada.getText());
+                        i.putExtra("id",Long.parseLong(entrada.getText().toString()));
                         startActivity(i);
                     }
                 })
-                .setNegativeButton("Cancelar",null)
+                .setNegativeButton(R.string.cancelar,null)
                 .show();
     }
 
