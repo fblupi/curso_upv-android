@@ -8,20 +8,32 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    private Button bAcercaDe;
-    private Button bSalir;
-    private Button bPreferencias;
+    //private Button bAcercaDe;
+    //private Button bSalir;
+    //private Button bPreferencias;
+    public BaseAdapter adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        adaptador = new ArrayAdapter(this,
+                R.layout.elemento_lista,
+                R.id.nombre,
+                Lugares.listaNombres());
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adaptador);
+
+        /*
         bAcercaDe =(Button) findViewById(R.id.Button03);
         bAcercaDe.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -42,6 +54,7 @@ public class MainActivity extends ActionBarActivity {
                 lanzarPreferencias(null);
             }
         });
+        */
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {

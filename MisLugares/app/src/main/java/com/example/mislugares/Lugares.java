@@ -29,6 +29,14 @@ public class Lugares {
         vectorLugares.remove(id);
     }
 
+    static List listaNombres(){
+        ArrayList resultado = new ArrayList();
+        for (Lugar lugar:vectorLugares){
+            resultado.add(lugar.getNombre());
+        }
+        return resultado;
+    }
+
     public static int size() {
         return vectorLugares.size();
     }
