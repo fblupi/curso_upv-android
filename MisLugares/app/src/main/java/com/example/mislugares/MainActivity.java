@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -15,7 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
 
     //private Button bAcercaDe;
     //private Button bSalir;
@@ -26,12 +27,10 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        adaptador = new ArrayAdapter(this,
-                R.layout.elemento_lista,
-                R.id.nombre,
-                Lugares.listaNombres());
+        adaptador = new AdaptadorLugares(this);
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adaptador);
+        listView.setOnItemClickListener(this);
 
         /*
         bAcercaDe =(Button) findViewById(R.id.Button03);
@@ -77,6 +76,13 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return true; /** true -> consumimos el item, no se propaga*/
+    }
+
+    @Override
+    public void onItemClick(AdapterView parent,View vista, int posicion, long id){
+        Intent i = new Intent(this, VistaLugar.class);
+        i.putExtra("id", id);
+        startActivity(i);
     }
 
     private void lanzarAcercaDe(View view){
