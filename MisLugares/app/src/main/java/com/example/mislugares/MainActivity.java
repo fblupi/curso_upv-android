@@ -90,6 +90,24 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         //mp.release();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle estadoGuardado){
+        super.onSaveInstanceState(estadoGuardado);
+        if (mp != null) {
+            int pos = mp.getCurrentPosition();
+            estadoGuardado.putInt("posicion", pos);
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle estadoGuardado){
+        super.onRestoreInstanceState(estadoGuardado);
+        if (estadoGuardado != null && mp != null) {
+            int pos = estadoGuardado.getInt("posicion");
+            mp.seekTo(pos);
+        }
+    }
+
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true; /** true -> el menú ya está visible */
