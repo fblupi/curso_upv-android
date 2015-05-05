@@ -3,6 +3,7 @@ package com.example.mislugares;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
@@ -22,6 +24,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     //private Button bSalir;
     //private Button bPreferencias;
     public BaseAdapter adaptador;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adaptador);
         listView.setOnItemClickListener(this);
+
+        mp = MediaPlayer.create(this, R.raw.audio);
 
         /*
         bAcercaDe =(Button) findViewById(R.id.Button03);
@@ -54,6 +59,35 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
             }
         });
         */
+    }
+
+    @Override protected void onStart() {
+        super.onStart();
+    }
+
+    @Override protected void onResume() {
+        super.onResume();
+        mp.start();
+    }
+
+    @Override protected void onPause() {
+        super.onPause();
+        mp.pause();
+    }
+
+    @Override protected void onStop() {
+        super.onStop();
+    }
+
+    @Override protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override protected void onDestroy() {
+        super.onDestroy();
+        //mp.stop();
+        //mp.reset();
+        //mp.release();
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
