@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class AdaptadorLugares extends BaseAdapter {
     private LayoutInflater inflador; // Crea Layouts a partir del XML
-    TextView nombre, direccion;
+    TextView nombre, direccion, distancia;
     ImageView foto;
     RatingBar valoracion;
 
@@ -46,6 +46,20 @@ public class AdaptadorLugares extends BaseAdapter {
         foto.setImageResource(id);
         foto.setScaleType(ImageView.ScaleType.FIT_END);
         valoracion.setRating(lugar.getValoracion());
+
+
+        /*
+        distancia = (TextView) vistaReciclada.findViewById(R.id.distancia);
+        if(Lugares.posicionActual != null && lugar.getPosicion() != null) {
+            int d = (int) Lugares.posicionActual.distancia(lugar.getPosicion());
+            if(d < 2000) {
+                distancia.setText(d + " m");
+            } else {
+                distancia.setText(d / 1000 + "Km");
+            }
+        }
+        */
+
         return vistaReciclada;
     }
 

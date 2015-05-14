@@ -3,9 +3,13 @@ package com.example.mislugares;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,13 +22,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener, LocationListener {
 
-    //private Button bAcercaDe;
-    //private Button bSalir;
-    //private Button bPreferencias;
     public BaseAdapter adaptador;
     private MediaPlayer mp;
+    private LocationManager manejador;
+    private Location mejorLocaliz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,28 +40,17 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
         mp = MediaPlayer.create(this, R.raw.audio);
 
-        /*
-        bAcercaDe =(Button) findViewById(R.id.Button03);
-        bAcercaDe.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                lanzarAcercaDe(null);
-            }
-        });
+        manejador = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if(manejador.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            actualizaMejorLocaliz(manejador.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+        }
+        if(manejador.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            actualizaMejorLocaliz(manejador.getLastKnownLocation(LocationManager.NETWORK_PROVIDER));
+        }
+    }
 
-        bSalir = (Button) findViewById(R.id.Button04);
-        bSalir.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                salir(null);
-            }
-        });
-
-        bPreferencias = (Button) findViewById(R.id.Button02);
-        bPreferencias.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                lanzarPreferencias(null);
-            }
-        });
-        */
+    private void actualizaMejorLocaliz(Location lastKnownLocation) {
+        //
     }
 
     @Override protected void onStart() {
@@ -68,11 +60,13 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     @Override protected void onResume() {
         super.onResume();
         mp.start();
+        activarProveedores();
     }
 
     @Override protected void onPause() {
         super.onPause();
         mp.pause();
+        manejador.removeUpdates((android.location.LocationListener) this);
     }
 
     @Override protected void onStop() {
@@ -85,9 +79,6 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
     @Override protected void onDestroy() {
         super.onDestroy();
-        //mp.stop();
-        //mp.reset();
-        //mp.release();
     }
 
     @Override
@@ -127,6 +118,10 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
             lanzarVistaLugar(null);
             return true;
         }
+        if (id==R.id.menu_mapa) {
+            Intent i = new Intent(this, Mapa.class);
+            startActivity(i);
+        }
         return true; /** true -> consumimos el item, no se propaga*/
     }
 
@@ -135,6 +130,28 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         Intent i = new Intent(this, VistaLugar.class);
         i.putExtra("id", id);
         startActivity(i);
+    }
+
+    @Override public void onLocationChanged(Location location) {
+        //Log.d(Lugares.TAG, "Nueva localización: " + location);
+        actualizaMejorLocaliz(location);
+    }
+
+
+    @Override public void onProviderDisabled(String proveedor) {
+        //Log.d(Lugares.TAG, "Se deshabilita: "+proveedor);
+        activarProveedores();
+    }
+
+    @Override    public void onProviderEnabled(String proveedor) {
+        //Log.d(Lugares.TAG, "Se habilita: "+proveedor);
+        activarProveedores();
+    }
+
+    @Override
+    public void onStatusChanged(String proveedor, int estado, Bundle extras) {
+        //Log.d(Lugares.TAG, "Cambia estado: "+proveedor);
+        activarProveedores();
     }
 
     private void lanzarAcercaDe(View view){
@@ -166,7 +183,13 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 .show();
     }
 
-    private void salir(View view) {
-        finish();
+    private void activarProveedores() {
+        if(manejador.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            manejador.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20 * 1000, 5, (android.location.LocationListener) this);
+        }
+
+        if(manejador.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            manejador.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10 * 1000, 10, (android.location.LocationListener) this);
+        }
     }
 }
