@@ -1,5 +1,6 @@
 package com.example.mislugares;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -19,8 +20,7 @@ public class  Mapa extends FragmentActivity implements GoogleMap.OnInfoWindowCli
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mapa);
-        mapa = ((SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapa)).getMap();
+        mapa = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapa)).getMap();
         mapa.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mapa.setMyLocationEnabled(true);
         mapa.getUiSettings().setZoomControlsEnabled(true);
@@ -34,11 +34,9 @@ public class  Mapa extends FragmentActivity implements GoogleMap.OnInfoWindowCli
         for (Lugar lugar : Lugares.vectorLugares) {
             GeoPunto p = lugar.getPosicion();
             if (p != null && p.getLatitud() != 0) {
-                BitmapDrawable iconoDrawable = (BitmapDrawable) getResources()
-                        .getDrawable(lugar.getTipo().getRecurso());
+                BitmapDrawable iconoDrawable = (BitmapDrawable) getResources().getDrawable(lugar.getTipo().getRecurso());
                 Bitmap iGrande = iconoDrawable.getBitmap();
-                Bitmap icono = Bitmap.createScaledBitmap(iGrande,
-                        iGrande.getWidth() / 7, iGrande.getHeight() / 7, false);
+                Bitmap icono = Bitmap.createScaledBitmap(iGrande, iGrande.getWidth() / 7, iGrande.getHeight() / 7, false);
                 mapa.addMarker(new MarkerOptions()
                         .position(new LatLng(p.getLatitud(), p.getLongitud()))
                         .title(lugar.getNombre()).snippet(lugar.getDireccion())
@@ -47,12 +45,19 @@ public class  Mapa extends FragmentActivity implements GoogleMap.OnInfoWindowCli
 
         }
 
-        mapa.setOnInfoWindowClickListener((GoogleMap.OnInfoWindowClickListener) this);
+        mapa.setOnInfoWindowClickListener(this);
 
     }
 
     @Override public void onInfoWindowClick(Marker marker) {
-        //
+        for (int id = 0; id < Lugares.vectorLugares.size(); id++) {
+            if (Lugares.vectorLugares.get(id).getNombre().equals(marker.getTitle())) {
+                Intent intent = new Intent(this, VistaLugar.class);
+                intent.putExtra("id", (long) id);
+                startActivity(intent);
+                break;
+            }
+        }
     }
 
 }

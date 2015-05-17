@@ -29,6 +29,8 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private LocationManager manejador;
     private Location mejorLocaliz;
 
+    static final long DOS_MINUTOS = 2 * 60 * 1000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +51,13 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         }
     }
 
-    private void actualizaMejorLocaliz(Location lastKnownLocation) {
-        //
+    private void actualizaMejorLocaliz(Location localiz) {
+        if (mejorLocaliz == null || localiz.getAccuracy() < 2*mejorLocaliz.getAccuracy() || localiz.getTime() - mejorLocaliz.getTime() > DOS_MINUTOS) {
+            Log.d(Lugares.TAG, "Nueva mejor localización");
+            mejorLocaliz = localiz;
+            Lugares.posicionActual.setLatitud(localiz.getLatitude());
+            Lugares.posicionActual.setLongitud(localiz.getLongitude());
+        }
     }
 
     @Override protected void onStart() {
@@ -66,7 +73,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     @Override protected void onPause() {
         super.onPause();
         mp.pause();
-        manejador.removeUpdates((android.location.LocationListener) this);
+        manejador.removeUpdates(this);
     }
 
     @Override protected void onStop() {
@@ -133,24 +140,24 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     }
 
     @Override public void onLocationChanged(Location location) {
-        //Log.d(Lugares.TAG, "Nueva localización: " + location);
+        Log.d(Lugares.TAG, "Nueva localización: " + location);
         actualizaMejorLocaliz(location);
     }
 
 
     @Override public void onProviderDisabled(String proveedor) {
-        //Log.d(Lugares.TAG, "Se deshabilita: "+proveedor);
+        Log.d(Lugares.TAG, "Se deshabilita: "+proveedor);
         activarProveedores();
     }
 
     @Override    public void onProviderEnabled(String proveedor) {
-        //Log.d(Lugares.TAG, "Se habilita: "+proveedor);
+        Log.d(Lugares.TAG, "Se habilita: "+proveedor);
         activarProveedores();
     }
 
     @Override
     public void onStatusChanged(String proveedor, int estado, Bundle extras) {
-        //Log.d(Lugares.TAG, "Cambia estado: "+proveedor);
+        Log.d(Lugares.TAG, "Cambia estado: "+proveedor);
         activarProveedores();
     }
 
@@ -185,11 +192,11 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
     private void activarProveedores() {
         if(manejador.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-            manejador.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20 * 1000, 5, (android.location.LocationListener) this);
+            manejador.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20 * 1000, 5, this);
         }
 
         if(manejador.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            manejador.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10 * 1000, 10, (android.location.LocationListener) this);
+            manejador.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10 * 1000, 10, this);
         }
     }
 }

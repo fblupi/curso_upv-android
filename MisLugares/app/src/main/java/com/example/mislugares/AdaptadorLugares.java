@@ -47,8 +47,6 @@ public class AdaptadorLugares extends BaseAdapter {
         foto.setScaleType(ImageView.ScaleType.FIT_END);
         valoracion.setRating(lugar.getValoracion());
 
-
-        /*
         distancia = (TextView) vistaReciclada.findViewById(R.id.distancia);
         if(Lugares.posicionActual != null && lugar.getPosicion() != null) {
             int d = (int) Lugares.posicionActual.distancia(lugar.getPosicion());
@@ -58,7 +56,6 @@ public class AdaptadorLugares extends BaseAdapter {
                 distancia.setText(d / 1000 + "Km");
             }
         }
-        */
 
         return vistaReciclada;
     }
